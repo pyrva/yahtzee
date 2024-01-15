@@ -23,7 +23,7 @@ score_sixes = partial(score_value, value=6)
 
 
 def score_n_of_kind(dice: list, n: int) -> int:
-    """Score sum of all dice least n die with a given value."""
+    """Score sum of all dice if at least n die with a given value."""
     counts = Counter(dice)
     if max(counts.values()) >= n:
         return sum(dice)
