@@ -1,12 +1,13 @@
 ########################################
 # Score categories
 ########################################
+import random
 def score_ones(dice: list[int]) -> int:
     """Score sum of all dice of a given value 1.
 
     Only the dice of the value are counted. The rest are ignored.
     """
-    pass
+    return dice.count(1)
 
 
 def score_twos(dice: list[int]) -> int:
@@ -14,6 +15,7 @@ def score_twos(dice: list[int]) -> int:
 
     Only the dice of the value are counted. The rest are ignored.
     """
+    return dice.count(2)*2
     pass
 
 
@@ -22,6 +24,7 @@ def score_threes(dice: list[int]) -> int:
 
     Only the dice of the value are counted. The rest are ignored.
     """
+    return dice.count(3)*3
     pass
 
 
@@ -30,7 +33,7 @@ def score_fours(dice: list[int]) -> int:
 
     Only the dice of the value are counted. The rest are ignored.
     """
-    pass
+    return dice.count(4)*4
 
 
 def score_fives(dice: list[int]) -> int:
@@ -38,7 +41,7 @@ def score_fives(dice: list[int]) -> int:
 
     Only the dice of the value are counted. The rest are ignored.
     """
-    pass
+    return dice.count(5)*5
 
 
 def score_sixes(dice: list[int]) -> int:
@@ -46,27 +49,39 @@ def score_sixes(dice: list[int]) -> int:
 
     Only the dice of the value are counted. The rest are ignored.
     """
-    pass
+    return dice.count(6)*6
 
 
 def score_3_of_a_kind(dice: list) -> int:
     """Score sum of all dice if at least 3 die with a given value."""
-    pass
+    for x in range(1,7):
+        if dice.count(x) >= 3:
+            return sum(dice)
+    return 0
 
 
 def score_4_of_a_kind(dice: list) -> int:
     """Score sum of all dice if at least 4 die with a given value."""
-    pass
+    for x in range(1, 7):
+        if dice.count(x) >= 4:
+            return sum(dice)
+    return 0
 
 
 def score_small_straight(dice: list[int]) -> int:
     """Score 30 if there is a straight of 4 dice."""
+    dice = sorted(dice)
     pass
 
 
 def score_large_straight(dice: list[int]) -> int:
     """Score 40 if there is a straight of 5 dice."""
-    pass
+    dice = sorted(dice)
+    min = dice[0]
+    max = dice[-1]
+    if (max-min) != 4:
+        return 0
+    return 40
 
 
 def score_full_house(dice: list[int]) -> int:
@@ -92,12 +107,15 @@ def score_yahtzee(dice: list[int]) -> int:
 ########################################
 def roll(n: int) -> list[int]:
     """Rolls n dice and returns the result in a list."""
-    pass
+    return [random.randint(1, 6) for _ in range(n)]
 
 
 def is_valid_to_keep(dice: list[int], keep: list[int]) -> bool:
     """Checks if the dice to keep are valid."""
-    pass
+    for x in keep:
+        if x not in dice:
+            return False
+    return True
 
 
 def prompt_dice_to_keep(dice: list[int]) -> list[int]:

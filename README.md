@@ -9,16 +9,16 @@ The game of yahtzee is a simple dice game. Each round, each player rolls five si
 The player shall go until they've used all the categories.
 
 ## Scoring
-Catgory | Scoring
----|---
-1s, 2s, 3s, 4s, 5s, 6s | Score the sum of the dice that reads one, two, three, four, five or six, respectively.
-Three of a kind | Sum of dice if 3 are the same.
-Four of a kind | Sum of dice if 4 are the same.
-Full house | 25 points if the dice are a pair and three of a kind
-Small straight | 30 points with four dice in ascending order.
-Large straight | 40 points with four dice in ascending order.
-Yahtzee | 50 points if all dice are the have the same number.
-Chance | The player gets the sum of all dice, no matter what they read.
+| Catgory                | Scoring                                                                                |
+|------------------------|----------------------------------------------------------------------------------------|
+| 1s, 2s, 3s, 4s, 5s, 6s | Score the sum of the dice that reads one, two, three, four, five or six, respectively. |
+| Three of a kind        | Sum of dice if 3 are the same.                                                         |
+| Four of a kind         | Sum of dice if 4 are the same.                                                         |
+| Full house             | 25 points if the dice are a pair and three of a kind                                   |
+| Small straight         | 30 points with four dice in ascending order.                                           |
+| Large straight         | 40 points with five dice in ascending order.                                           |
+| Yahtzee                | 50 points if all dice are the have the same number.                                    |
+| Chance                 | The player gets the sum of all dice, no matter what they read.                         |
 
 ## Constraints
 - Assume a single player
