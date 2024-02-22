@@ -2,6 +2,9 @@
 # Score categories
 ########################################
 import random
+from collections import Counter
+
+
 def score_ones(dice: list[int]) -> int:
     """Score sum of all dice of a given value 1.
 
@@ -15,7 +18,7 @@ def score_twos(dice: list[int]) -> int:
 
     Only the dice of the value are counted. The rest are ignored.
     """
-    return dice.count(2)*2
+    return dice.count(2) * 2
     pass
 
 
@@ -24,7 +27,7 @@ def score_threes(dice: list[int]) -> int:
 
     Only the dice of the value are counted. The rest are ignored.
     """
-    return dice.count(3)*3
+    return dice.count(3) * 3
     pass
 
 
@@ -33,7 +36,7 @@ def score_fours(dice: list[int]) -> int:
 
     Only the dice of the value are counted. The rest are ignored.
     """
-    return dice.count(4)*4
+    return dice.count(4) * 4
 
 
 def score_fives(dice: list[int]) -> int:
@@ -41,7 +44,7 @@ def score_fives(dice: list[int]) -> int:
 
     Only the dice of the value are counted. The rest are ignored.
     """
-    return dice.count(5)*5
+    return dice.count(5) * 5
 
 
 def score_sixes(dice: list[int]) -> int:
@@ -49,12 +52,12 @@ def score_sixes(dice: list[int]) -> int:
 
     Only the dice of the value are counted. The rest are ignored.
     """
-    return dice.count(6)*6
+    return dice.count(6) * 6
 
 
 def score_3_of_a_kind(dice: list) -> int:
     """Score sum of all dice if at least 3 die with a given value."""
-    for x in range(1,7):
+    for x in range(1, 7):
         if dice.count(x) >= 3:
             return sum(dice)
     return 0
@@ -79,7 +82,7 @@ def score_large_straight(dice: list[int]) -> int:
     dice = sorted(dice)
     min = dice[0]
     max = dice[-1]
-    if (max-min) != 4:
+    if (max - min) != 4:
         return 0
     return 40
 
@@ -89,17 +92,24 @@ def score_full_house(dice: list[int]) -> int:
 
     Allow for 5 of a kind to count as a pair and a three of a kind.
     """
-    pass
+    dice_counter = Counter(dice)
+    if (2 in dice_counter.values() and 3 in dice_counter.values()) or (
+        5 in dice_counter.values()
+    ):
+        return 25
+    return 0
 
 
 def score_chance(dice: list[int]) -> int:
     """Score sum of all dice."""
-    pass
+    return sum(dice)
 
 
 def score_yahtzee(dice: list[int]) -> int:
     """Score 50 if all dice are the same."""
-    pass
+    if len(set(dice)) == 1:
+        return 50
+    return 0
 
 
 ########################################
@@ -147,6 +157,19 @@ def main():
         "Chance": {"score": 0, "used": False, "func": score_chance},
         "Yahtzee": {"score": 0, "used": False, "func": score_yahtzee},
     }
+
+    while not all_scores_used(scores):
+        print("Rolling 5 dice...")
+        input("Press Enter to roll...")
+        pass
+
+
+def all_scores_used(scores: dict) -> bool:
+    """Checks if all scores have been used."""
+    for x in scores:
+        if scores[x]["used"] == False:
+            return False
+    return True
 
 
 if __name__ == "__main__":
